@@ -1,0 +1,2885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PRAGATI AI | Project Monitoring</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+
+        button,
+        input,
+        textarea,
+        select {
+            font-family: inherit;
+        }
+
+
+        button {
+            cursor: pointer;
+        }
+
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .navbar {
+            height: 72px;
+            background: white;
+            border-bottom: 1px solid #e7ebf0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 20px;
+            font-weight: 800;
+            color: #172033;
+        }
+
+
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+
+            border-radius: 10px;
+
+            background: #eef3ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #4f7df3;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+
+        .nav-link {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+
+        .nav-link:hover {
+            color: #4f7df3;
+        }
+
+
+        /* =========================================
+           NOTIFICATION BELL
+        ========================================= */
+
+        .notification-wrapper {
+            position: relative;
+        }
+
+
+        .notification-button {
+            width: 38px;
+            height: 38px;
+
+            border: 1px solid #e2e8f0;
+
+            background: white;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            font-size: 17px;
+        }
+
+
+        .notification-button:hover {
+            background: #f8fafc;
+        }
+
+
+        .notification-count {
+            position: absolute;
+
+            top: -5px;
+            right: -5px;
+
+            min-width: 17px;
+            height: 17px;
+
+            padding: 0 4px;
+
+            border-radius: 20px;
+
+            background: #e05260;
+
+            color: white;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .notification-panel {
+            display: none;
+
+            position: absolute;
+
+            right: 0;
+            top: 48px;
+
+            width: 360px;
+
+            background: white;
+
+            border: 1px solid #e3e8ef;
+
+            border-radius: 15px;
+
+            box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+
+            z-index: 500;
+
+            overflow: hidden;
+        }
+
+
+        .notification-panel.active {
+            display: block;
+        }
+
+
+        .notification-panel-header {
+            padding: 16px 18px;
+
+            border-bottom: 1px solid #edf1f5;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .notification-panel-header h3 {
+            font-size: 14px;
+
+            color: #172033;
+        }
+
+
+        .notification-panel-header span {
+            font-size: 10px;
+
+            color: #94a3b8;
+        }
+
+
+        .notification-item {
+            padding: 15px 18px;
+
+            border-bottom: 1px solid #f0f2f5;
+
+            display: flex;
+
+            gap: 12px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .notification-item:hover {
+            background: #f8fafc;
+        }
+
+
+        .notification-icon {
+            width: 32px;
+            height: 32px;
+
+            flex-shrink: 0;
+
+            border-radius: 9px;
+
+            background: #fff4e8;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 14px;
+        }
+
+
+        .notification-content {
+            flex: 1;
+        }
+
+
+        .notification-title {
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #334155;
+
+            margin-bottom: 4px;
+        }
+
+
+        .notification-description {
+            font-size: 10px;
+
+            line-height: 1.5;
+
+            color: #94a3b8;
+        }
+
+
+        .notification-time {
+            margin-top: 5px;
+
+            font-size: 9px;
+
+            color: #b0bac7;
+        }
+
+
+        .notification-footer {
+            padding: 11px 18px;
+
+            text-align: center;
+
+            font-size: 10px;
+
+            color: #4f7df3;
+
+            cursor: pointer;
+        }
+
+
+        .notification-footer:hover {
+            background: #f8fafc;
+        }
+
+
+        /* =========================================
+           GOOGLE BUTTON
+        ========================================= */
+
+        .google-login {
+            border: 1px solid #dfe5ed;
+            background: white;
+
+            border-radius: 9px;
+
+            padding: 9px 14px;
+
+            font-size: 12px;
+            color: #334155;
+        }
+
+
+        .google-login:hover {
+            background: #f8fafc;
+        }
+
+
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .container {
+            width: 86%;
+            max-width: 1350px;
+
+            margin: 0 auto;
+
+            padding: 38px 0 60px;
+        }
+
+
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
+
+        .page-header {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: flex-start;
+
+            margin-bottom: 25px;
+        }
+
+
+        .page-header h1 {
+            font-size: 28px;
+
+            color: #172033;
+
+            margin-bottom: 8px;
+        }
+
+
+        .page-header p {
+            color: #7b8798;
+
+            font-size: 13px;
+        }
+
+
+        .project-status {
+            background: #fff7eb;
+
+            color: #c27c20;
+
+            padding: 9px 14px;
+
+            border-radius: 10px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+
+        /* =========================================
+           PROJECT SUMMARY
+        ========================================= */
+
+        .project-summary {
+            background: white;
+
+            border: 1px solid #e3e8ef;
+
+            border-radius: 18px;
+
+            padding: 24px;
+
+            margin-bottom: 25px;
+
+            display: grid;
+
+            grid-template-columns: 2fr repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .summary-main h2 {
+            font-size: 18px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .summary-main p {
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        .summary-item {
+            border-left: 1px solid #edf0f4;
+
+            padding-left: 18px;
+        }
+
+
+        .summary-item span {
+            display: block;
+
+            color: #94a3b8;
+
+            font-size: 10px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .summary-item strong {
+            font-size: 15px;
+
+            color: #334155;
+        }
+
+
+
+        /* =========================================
+           GRAPHS
+        ========================================= */
+
+        .graphs-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .graph-card {
+            background: white;
+
+            border: 1px solid #e3e8ef;
+
+            border-radius: 18px;
+
+            padding: 23px;
+        }
+
+
+        .graph-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            margin-bottom: 15px;
+        }
+
+
+        .graph-header h3 {
+            font-size: 17px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .graph-header p {
+            color: #94a3b8;
+
+            font-size: 11px;
+        }
+
+
+        .graph-status {
+            font-size: 10px;
+
+            padding: 5px 8px;
+
+            border-radius: 10px;
+
+            font-weight: 700;
+        }
+
+
+        .graph-status.warning {
+            background: #fff7eb;
+
+            color: #c27c20;
+        }
+
+
+        .chart-legend {
+            display: flex;
+
+            gap: 15px;
+
+            margin-bottom: 8px;
+
+            font-size: 11px;
+
+            color: #64748b;
+        }
+
+
+        .chart-legend-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+        }
+
+
+        .legend-line {
+            width: 20px;
+
+            height: 3px;
+
+            border-radius: 5px;
+        }
+
+
+        .legend-planned {
+            background: #4f7df3;
+        }
+
+
+        .legend-actual {
+            background: #4cae78;
+        }
+
+
+        .graph-wrapper {
+            width: 100%;
+
+            height: 220px;
+
+            position: relative;
+        }
+
+
+        .line-chart {
+            width: 100%;
+
+            height: 190px;
+
+            display: block;
+        }
+
+
+        .chart-grid-line {
+            stroke: #edf1f5;
+
+            stroke-width: 1;
+        }
+
+
+        .planned-line {
+            fill: none;
+
+            stroke: #4f7df3;
+
+            stroke-width: 3;
+
+            stroke-linecap: round;
+
+            stroke-linejoin: round;
+        }
+
+
+        .actual-line {
+            fill: none;
+
+            stroke: #4cae78;
+
+            stroke-width: 3;
+
+            stroke-linecap: round;
+
+            stroke-linejoin: round;
+        }
+
+
+        .planned-point {
+            fill: white;
+
+            stroke: #4f7df3;
+
+            stroke-width: 2;
+        }
+
+
+        .actual-point {
+            fill: white;
+
+            stroke: #4cae78;
+
+            stroke-width: 2;
+        }
+
+
+        .chart-axis-labels {
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 5px 2px 0;
+
+            color: #94a3b8;
+
+            font-size: 9px;
+        }
+
+
+        .chart-note {
+            margin-top: 5px;
+
+            color: #94a3b8;
+
+            font-size: 10px;
+        }
+
+
+
+        /* =========================================
+           DEVIATION CARD
+        ========================================= */
+
+        .attention-card {
+            background: white;
+
+            border: 1px solid #e3e8ef;
+
+            border-radius: 18px;
+
+            padding: 24px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .attention-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+
+        .attention-header h2 {
+            font-size: 18px;
+        }
+
+
+        .attention-header p {
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            margin-top: 4px;
+        }
+
+
+        .attention-count {
+            background: #fff1f2;
+
+            color: #d55a64;
+
+            padding: 6px 10px;
+
+            border-radius: 8px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        .deviation-table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+
+        .deviation-table th {
+            text-align: left;
+
+            padding: 12px;
+
+            background: #f8fafc;
+
+            color: #64748b;
+
+            font-size: 10px;
+        }
+
+
+        .deviation-table td {
+            padding: 15px 12px;
+
+            border-bottom: 1px solid #edf1f5;
+
+            font-size: 12px;
+
+            color: #475569;
+        }
+
+
+        .deviation-value {
+            color: #d55a64 !important;
+
+            font-weight: 700;
+        }
+
+
+        .reason-btn {
+            border: 1px solid #dfe5ed;
+
+            background: white;
+
+            padding: 7px 11px;
+
+            border-radius: 8px;
+
+            font-size: 10px;
+
+            color: #4f7df3;
+        }
+
+
+        .reason-btn:hover {
+            background: #f5f8ff;
+        }
+
+
+
+        /* =========================================
+           SUGGESTION CARD
+        ========================================= */
+
+        .suggestion-card {
+            display: none;
+
+            background: #f6fbf8;
+
+            border: 1px solid #dcefe3;
+
+            border-radius: 16px;
+
+            padding: 20px;
+
+            margin-top: 18px;
+        }
+
+
+        .suggestion-card.active {
+            display: block;
+        }
+
+
+        .suggestion-title {
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #347a54;
+
+            margin-bottom: 8px;
+        }
+
+
+        .suggestion-text {
+            color: #5d7668;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+            margin-bottom: 15px;
+        }
+
+
+        .action-btn {
+            border: 1px solid #bcdcc8;
+
+            background: white;
+
+            color: #347a54;
+
+            padding: 8px 12px;
+
+            border-radius: 8px;
+
+            font-size: 10px;
+
+            font-weight: 600;
+        }
+
+
+
+        /* =========================================
+           INFO
+        ========================================= */
+
+        .info-card {
+            background: #f5f8ff;
+
+            border: 1px solid #dfe7fb;
+
+            border-radius: 16px;
+
+            padding: 18px 20px;
+
+            font-size: 11px;
+
+            color: #60708a;
+
+            line-height: 1.6;
+        }
+
+
+
+        /* =========================================
+           MODALS
+        ========================================= */
+
+        .modal-overlay {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(15, 23, 42, 0.45);
+
+            z-index: 1000;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+
+        .modal {
+            width: 100%;
+
+            max-width: 500px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 28px;
+
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.15);
+        }
+
+
+        .modal-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+
+        .modal-header h2 {
+            font-size: 20px;
+        }
+
+
+        .close-btn {
+            border: none;
+
+            background: #f1f5f9;
+
+            width: 30px;
+
+            height: 30px;
+
+            border-radius: 50%;
+
+            font-size: 16px;
+
+            color: #64748b;
+        }
+
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #475569;
+
+            margin-bottom: 7px;
+        }
+
+
+        .form-control {
+            width: 100%;
+
+            border: 1px solid #dfe5ed;
+
+            border-radius: 9px;
+
+            padding: 10px 12px;
+
+            font-size: 12px;
+
+            outline: none;
+
+            color: #334155;
+
+            background: white;
+        }
+
+
+        .form-control:focus {
+            border-color: #9db5f7;
+        }
+
+
+        textarea.form-control {
+            min-height: 95px;
+
+            resize: vertical;
+        }
+
+
+        .readonly-field {
+            background: #f8fafc;
+
+            color: #64748b;
+        }
+
+
+        .modal-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+
+        .cancel-btn {
+            border: 1px solid #dfe5ed;
+
+            background: white;
+
+            padding: 10px 16px;
+
+            border-radius: 9px;
+
+            font-size: 11px;
+
+            color: #64748b;
+        }
+
+
+        .primary-btn {
+            border: none;
+
+            background: #4f7df3;
+
+            color: white;
+
+            padding: 10px 17px;
+
+            border-radius: 9px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+
+        /* =========================================
+           GOOGLE MODAL
+        ========================================= */
+
+        .google-modal {
+            max-width: 390px;
+
+            text-align: center;
+        }
+
+
+        .google-icon {
+            width: 50px;
+
+            height: 50px;
+
+            border-radius: 50%;
+
+            background: #f1f5f9;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: 0 auto 15px;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #4285f4;
+        }
+
+
+        .google-modal h2 {
+            font-size: 19px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .google-modal p {
+            font-size: 11px;
+
+            color: #94a3b8;
+
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+        }
+
+
+        .google-demo-btn {
+            width: 100%;
+
+            border: 1px solid #dfe5ed;
+
+            background: white;
+
+            border-radius: 9px;
+
+            padding: 11px;
+
+            font-size: 12px;
+
+            color: #334155;
+        }
+
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1100px) {
+
+            .graphs-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .project-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+
+            .summary-main {
+                grid-column: 1 / -1;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+
+            .nav-link {
+                display: none;
+            }
+
+
+            .container {
+                width: 92%;
+            }
+
+
+            .page-header {
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .project-summary {
+                grid-template-columns: 1fr;
+            }
+
+
+            .summary-main {
+                grid-column: auto;
+            }
+
+
+            .summary-item {
+                border-left: none;
+
+                border-top: 1px solid #edf0f4;
+
+                padding-left: 0;
+
+                padding-top: 14px;
+            }
+
+
+            .notification-panel {
+                position: fixed;
+
+                top: 70px;
+
+                left: 10px;
+
+                right: 10px;
+
+                width: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav class="navbar">
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                P
+            </div>
+
+            PRAGATI AI
+
+        </div>
+
+
+        <div class="nav-right">
+
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+                Home
+            </a>
+
+
+            <a
+                href="#monitoring"
+                class="nav-link"
+            >
+                Monitoring
+            </a>
+
+
+            <!-- NOTIFICATION -->
+
+            <div class="notification-wrapper">
+
+                <button
+                    class="notification-button"
+                    onclick="toggleNotifications()"
+                >
+
+                    🔔
+
+                    <span
+                        class="notification-count"
+                        id="notificationCount"
+                    >
+                        2
+                    </span>
+
+                </button>
+
+
+                <div
+                    class="notification-panel"
+                    id="notificationPanel"
+                >
+
+
+                    <div class="notification-panel-header">
+
+                        <h3>
+                            Notifications
+                        </h3>
+
+                        <span id="notificationStatus">
+                            2 active warnings
+                        </span>
+
+                    </div>
+
+
+                    <!-- WORK WARNING -->
+
+                    <div
+                        class="notification-item"
+                        id="workNotification"
+                        onclick="goToDeviation('work')"
+                    >
+
+                        <div class="notification-icon">
+                            ⚠️
+                        </div>
+
+
+                        <div class="notification-content">
+
+                            <div class="notification-title">
+                                Work Progress Delay
+                            </div>
+
+
+                            <div class="notification-description">
+                                Project progress is 7% behind the planned
+                                completion level.
+                            </div>
+
+
+                            <div class="notification-time">
+                                Requires attention
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FINANCIAL WARNING -->
+
+                    <div
+                        class="notification-item"
+                        id="financeNotification"
+                        onclick="goToDeviation('finance')"
+                    >
+
+                        <div class="notification-icon">
+                            💰
+                        </div>
+
+
+                        <div class="notification-content">
+
+                            <div class="notification-title">
+                                Financial Warning
+                            </div>
+
+
+                            <div class="notification-description">
+                                Actual expenditure is ₹13 Cr above
+                                the planned expenditure.
+                            </div>
+
+
+                            <div class="notification-time">
+                                Requires attention
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div
+                        class="notification-footer"
+                        onclick="closeNotifications()"
+                    >
+                        View project deviations
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GOOGLE -->
+
+            <button
+                class="google-login"
+                onclick="openGoogleModal()"
+            >
+                Continue with Google
+            </button>
+
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         MAIN
+    ========================================= -->
+
+    <main class="container">
+
+
+        <!-- HEADER -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    Project Monitoring Dashboard
+                </h1>
+
+                <p>
+                    PRAGATI AI monitors project progress, schedule and financial performance.
+                </p>
+
+            </div>
+
+
+            <div class="project-status">
+                ⚠ Project Requires Attention
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             SUMMARY
+        ========================================= -->
+
+        <section class="project-summary">
+
+
+            <div class="summary-main">
+
+                <h2>
+                    Integrated Urban Water Infrastructure Project
+                </h2>
+
+                <p>
+                    Prototype monitoring example for a ₹150 Cr+ infrastructure project.
+                </p>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>
+                    PROJECT VALUE
+                </span>
+
+                <strong>
+                    ₹285 Cr
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>
+                    DURATION
+                </span>
+
+                <strong>
+                    30 Months
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>
+                    CURRENT MONTH
+                </span>
+
+                <strong>
+                    Month 20
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>
+                    CURRENT PROGRESS
+                </span>
+
+                <strong>
+                    61%
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             GRAPHS
+        ========================================= -->
+
+        <section
+            class="graphs-grid"
+            id="monitoring"
+        >
+
+
+            <!-- WORK PROGRESS -->
+
+            <div class="graph-card">
+
+
+                <div class="graph-header">
+
+                    <div>
+
+                        <h3>
+                            Work Progress
+                        </h3>
+
+                        <p>
+                            Planned vs actual completion
+                        </p>
+
+                    </div>
+
+
+                    <div class="graph-status warning">
+                        -7%
+                    </div>
+
+                </div>
+
+
+                <div class="chart-legend">
+
+                    <div class="chart-legend-item">
+
+                        <span class="legend-line legend-planned"></span>
+
+                        Planned
+
+                    </div>
+
+
+                    <div class="chart-legend-item">
+
+                        <span class="legend-line legend-actual"></span>
+
+                        Actual
+
+                    </div>
+
+                </div>
+
+
+                <div class="graph-wrapper">
+
+                    <svg
+                        class="line-chart"
+                        viewBox="0 0 360 190"
+                        preserveAspectRatio="none"
+                    >
+
+
+                        <line
+                            x1="20"
+                            y1="30"
+                            x2="350"
+                            y2="30"
+                            class="chart-grid-line"
+                        />
+
+                        <line
+                            x1="20"
+                            y1="75"
+                            x2="350"
+                            y2="75"
+                            class="chart-grid-line"
+                        />
+
+                        <line
+                            x1="20"
+                            y1="120"
+                            x2="350"
+                            y2="120"
+                            class="chart-grid-line"
+                        />
+
+                        <line
+                            x1="20"
+                            y1="165"
+                            x2="350"
+                            y2="165"
+                            class="chart-grid-line"
+                        />
+
+
+                        <polyline
+                            points="
+                            20,155
+                            75,140
+                            130,120
+                            185,95
+                            240,70
+                            295,48
+                            350,35
+                            "
+                            class="planned-line"
+                        />
+
+
+                        <polyline
+                            points="
+                            20,158
+                            75,148
+                            130,135
+                            185,115
+                            240,98
+                            295,78
+                            350,65
+                            "
+                            class="actual-line"
+                        />
+
+
+                        <circle cx="20" cy="155" r="4" class="planned-point"/>
+                        <circle cx="75" cy="140" r="4" class="planned-point"/>
+                        <circle cx="130" cy="120" r="4" class="planned-point"/>
+                        <circle cx="185" cy="95" r="4" class="planned-point"/>
+                        <circle cx="240" cy="70" r="4" class="planned-point"/>
+                        <circle cx="295" cy="48" r="4" class="planned-point"/>
+                        <circle cx="350" cy="35" r="4" class="planned-point"/>
+
+
+                        <circle cx="20" cy="158" r="4" class="actual-point"/>
+                        <circle cx="75" cy="148" r="4" class="actual-point"/>
+                        <circle cx="130" cy="135" r="4" class="actual-point"/>
+                        <circle cx="185" cy="115" r="4" class="actual-point"/>
+                        <circle cx="240" cy="98" r="4" class="actual-point"/>
+                        <circle cx="295" cy="78" r="4" class="actual-point"/>
+                        <circle cx="350" cy="65" r="4" class="actual-point"/>
+
+                    </svg>
+
+
+                    <div class="chart-axis-labels">
+
+                        <span>M1</span>
+                        <span>M5</span>
+                        <span>M10</span>
+                        <span>M15</span>
+                        <span>M20</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-note">
+                    Current actual progress: 61% | Planned: 68%
+                </div>
+
+            </div>
+
+
+
+            <!-- TIME -->
+
+            <div class="graph-card">
+
+
+                <div class="graph-header">
+
+                    <div>
+
+                        <h3>
+                            Schedule / Time
+                        </h3>
+
+                        <p>
+                            Planned vs actual timeline
+                        </p>
+
+                    </div>
+
+
+                    <div class="graph-status warning">
+                        Monitoring
+                    </div>
+
+                </div>
+
+
+                <div class="chart-legend">
+
+                    <div class="chart-legend-item">
+
+                        <span class="legend-line legend-planned"></span>
+
+                        Planned
+
+                    </div>
+
+
+                    <div class="chart-legend-item">
+
+                        <span class="legend-line legend-actual"></span>
+
+                        Actual
+
+                    </div>
+
+                </div>
+
+
+                <div class="graph-wrapper">
+
+                    <svg
+                        class="line-chart"
+                        viewBox="0 0 360 190"
+                        preserveAspectRatio="none"
+                    >
+
+
+                        <line x1="20" y1="30" x2="350" y2="30" class="chart-grid-line"/>
+
+                        <line x1="20" y1="75" x2="350" y2="75" class="chart-grid-line"/>
+
+                        <line x1="20" y1="120" x2="350" y2="120" class="chart-grid-line"/>
+
+                        <line x1="20" y1="165" x2="350" y2="165" class="chart-grid-line"/>
+
+
+                        <polyline
+                            points="
+                            20,160
+                            75,145
+                            130,125
+                            185,105
+                            240,82
+                            295,57
+                            350,32
+                            "
+                            class="planned-line"
+                        />
+
+
+                        <polyline
+                            points="
+                            20,160
+                            75,148
+                            130,132
+                            185,112
+                            240,90
+                            295,70
+                            350,48
+                            "
+                            class="actual-line"
+                        />
+
+
+                        <circle cx="20" cy="160" r="4" class="planned-point"/>
+                        <circle cx="75" cy="145" r="4" class="planned-point"/>
+                        <circle cx="130" cy="125" r="4" class="planned-point"/>
+                        <circle cx="185" cy="105" r="4" class="planned-point"/>
+                        <circle cx="240" cy="82" r="4" class="planned-point"/>
+                        <circle cx="295" cy="57" r="4" class="planned-point"/>
+                        <circle cx="350" cy="32" r="4" class="planned-point"/>
+
+
+                        <circle cx="20" cy="160" r="4" class="actual-point"/>
+                        <circle cx="75" cy="148" r="4" class="actual-point"/>
+                        <circle cx="130" cy="132" r="4" class="actual-point"/>
+                        <circle cx="185" cy="112" r="4" class="actual-point"/>
+                        <circle cx="240" cy="90" r="4" class="actual-point"/>
+                        <circle cx="295" cy="70" r="4" class="actual-point"/>
+                        <circle cx="350" cy="48" r="4" class="actual-point"/>
+
+                    </svg>
+
+
+                    <div class="chart-axis-labels">
+
+                        <span>M1</span>
+                        <span>M5</span>
+                        <span>M10</span>
+                        <span>M15</span>
+                        <span>M20</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-note">
+                    Planned duration: 30 months
+                </div>
+
+            </div>
+
+
+
+            <!-- FINANCIAL -->
+
+            <div class="graph-card">
+
+
+                <div class="graph-header">
+
+                    <div>
+
+                        <h3>
+                            Financial Progress
+                        </h3>
+
+                        <p>
+                            Planned vs actual expenditure
+                        </p>
+
+                    </div>
+
+
+                    <div class="graph-status warning">
+                        +₹13 Cr
+                    </div>
+
+                </div>
+
+
+                <div class="chart-legend">
+
+                    <div class="chart-legend-item">
+
+                        <span class="legend-line legend-planned"></span>
+
+                        Planned
+
+                    </div>
+
+
+                    <div class="chart-legend-item">
+
+                        <span class="legend-line legend-actual"></span>
+
+                        Actual
+
+                    </div>
+
+                </div>
+
+
+                <div class="graph-wrapper">
+
+                    <svg
+                        class="line-chart"
+                        viewBox="0 0 360 190"
+                        preserveAspectRatio="none"
+                    >
+
+
+                        <line x1="20" y1="30" x2="350" y2="30" class="chart-grid-line"/>
+
+                        <line x1="20" y1="75" x2="350" y2="75" class="chart-grid-line"/>
+
+                        <line x1="20" y1="120" x2="350" y2="120" class="chart-grid-line"/>
+
+                        <line x1="20" y1="165" x2="350" y2="165" class="chart-grid-line"/>
+
+
+                        <polyline
+                            points="
+                            20,160
+                            75,150
+                            130,130
+                            185,110
+                            240,88
+                            295,60
+                            350,40
+                            "
+                            class="planned-line"
+                        />
+
+
+                        <polyline
+                            points="
+                            20,160
+                            75,147
+                            130,125
+                            185,100
+                            240,75
+                            295,48
+                            350,25
+                            "
+                            class="actual-line"
+                        />
+
+
+                        <circle cx="20" cy="160" r="4" class="planned-point"/>
+                        <circle cx="75" cy="150" r="4" class="planned-point"/>
+                        <circle cx="130" cy="130" r="4" class="planned-point"/>
+                        <circle cx="185" cy="110" r="4" class="planned-point"/>
+                        <circle cx="240" cy="88" r="4" class="planned-point"/>
+                        <circle cx="295" cy="60" r="4" class="planned-point"/>
+                        <circle cx="350" cy="40" r="4" class="planned-point"/>
+
+
+                        <circle cx="20" cy="160" r="4" class="actual-point"/>
+                        <circle cx="75" cy="147" r="4" class="actual-point"/>
+                        <circle cx="130" cy="125" r="4" class="actual-point"/>
+                        <circle cx="185" cy="100" r="4" class="actual-point"/>
+                        <circle cx="240" cy="75" r="4" class="actual-point"/>
+                        <circle cx="295" cy="48" r="4" class="actual-point"/>
+                        <circle cx="350" cy="25" r="4" class="actual-point"/>
+
+                    </svg>
+
+
+                    <div class="chart-axis-labels">
+
+                        <span>M1</span>
+                        <span>M5</span>
+                        <span>M10</span>
+                        <span>M15</span>
+                        <span>M20</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-note">
+                    Planned: ₹190 Cr | Actual: ₹203 Cr
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             DEVIATIONS
+        ========================================= -->
+
+        <section class="attention-card">
+
+
+            <div class="attention-header">
+
+                <div>
+
+                    <h2>
+                        Detected Deviations
+                    </h2>
+
+                    <p>
+                        PRAGATI AI has identified parameters that require attention.
+                    </p>
+
+                </div>
+
+
+                <div class="attention-count">
+                    2 Deviations
+                </div>
+
+            </div>
+
+
+            <table class="deviation-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            PARAMETER
+                        </th>
+
+                        <th>
+                            PLANNED
+                        </th>
+
+                        <th>
+                            ACTUAL
+                        </th>
+
+                        <th>
+                            DEVIATION
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <tr id="workDeviation">
+
+                        <td>
+                            Work Progress
+                        </td>
+
+                        <td>
+                            68%
+                        </td>
+
+                        <td>
+                            61%
+                        </td>
+
+                        <td class="deviation-value">
+                            -7%
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="reason-btn"
+                                onclick="openReasonModal('Work Progress')"
+                            >
+                                Add Reason
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr id="financeDeviation">
+
+                        <td>
+                            Financial Spend
+                        </td>
+
+                        <td>
+                            ₹190 Cr
+                        </td>
+
+                        <td>
+                            ₹203 Cr
+                        </td>
+
+                        <td class="deviation-value">
+                            +₹13 Cr
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="reason-btn"
+                                onclick="openReasonModal('Financial Spend')"
+                            >
+                                Add Reason
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+
+            <!-- SUGGESTION -->
+
+            <div
+                class="suggestion-card"
+                id="suggestionCard"
+            >
+
+                <div class="suggestion-title">
+                    PRAGATI AI Recommendation
+                </div>
+
+
+                <div
+                    class="suggestion-text"
+                    id="suggestionText"
+                ></div>
+
+
+                <button
+                    class="action-btn"
+                    id="suggestionAction"
+                    onclick="performAction()"
+                >
+                    Take Action
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- INFO -->
+
+        <div class="info-card">
+
+            <strong>
+                Prototype Notice:
+            </strong>
+
+            This dashboard demonstrates how PRAGATI AI can monitor projects valued at
+            ₹150 crore or more by comparing planned and actual progress, identifying
+            deviations, collecting reasons and generating follow-up recommendations.
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         REASON MODAL
+    ========================================= -->
+
+    <div
+        class="modal-overlay"
+        id="reasonModal"
+    >
+
+
+        <div class="modal">
+
+
+            <div class="modal-header">
+
+                <h2>
+                    Explain Deviation
+                </h2>
+
+
+                <button
+                    class="close-btn"
+                    onclick="closeReasonModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Affected Parameter
+                </label>
+
+
+                <input
+                    type="text"
+                    id="affectedParameter"
+                    class="form-control readonly-field"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Responsible Factor
+                </label>
+
+
+                <select
+                    id="responsibleFactor"
+                    class="form-control"
+                >
+
+                    <option value="">
+                        Select responsible factor
+                    </option>
+
+                    <option value="government">
+                        Government Department
+                    </option>
+
+                    <option value="labour">
+                        Employees / Labour
+                    </option>
+
+                    <option value="contractor">
+                        Contractor
+                    </option>
+
+                    <option value="material">
+                        Material / Supply
+                    </option>
+
+                    <option value="weather">
+                        Weather / External Factor
+                    </option>
+
+                    <option value="other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Reason for Deviation
+                </label>
+
+
+                <textarea
+                    id="reasonText"
+                    class="form-control"
+                    placeholder="Enter the reason for the deviation..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="cancel-btn"
+                    onclick="closeReasonModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="saveReason()"
+                >
+                    Analyze Reason
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         GOOGLE MODAL
+    ========================================= -->
+
+    <div
+        class="modal-overlay"
+        id="googleModal"
+    >
+
+
+        <div class="modal google-modal">
+
+
+            <div class="google-icon">
+                G
+            </div>
+
+
+            <h2>
+                Continue with Google
+            </h2>
+
+
+            <p>
+                This is a prototype login interface for the PRAGATI AI demonstration.
+                No real Google authentication is connected.
+            </p>
+
+
+            <button
+                class="google-demo-btn"
+                onclick="closeGoogleModal()"
+            >
+                Continue as Demo User
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+
+        let currentParameter = "";
+
+        let currentFactor = "";
+
+        let notificationCount = 2;
+
+
+
+        /* =========================================
+           NOTIFICATION PANEL
+        ========================================= */
+
+        function toggleNotifications() {
+
+            document
+                .getElementById("notificationPanel")
+                .classList
+                .toggle("active");
+
+        }
+
+
+
+        function closeNotifications() {
+
+            document
+                .getElementById("notificationPanel")
+                .classList
+                .remove("active");
+
+        }
+
+
+
+        /* =========================================
+           GO TO DEVIATION
+        ========================================= */
+
+        function goToDeviation(type) {
+
+            closeNotifications();
+
+
+            if (type === "work") {
+
+                document
+                    .getElementById("workDeviation")
+                    .scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+            }
+
+
+            if (type === "finance") {
+
+                document
+                    .getElementById("financeDeviation")
+                    .scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           REASON MODAL
+        ========================================= */
+
+        function openReasonModal(parameter) {
+
+            currentParameter = parameter;
+
+
+            document
+                .getElementById("affectedParameter")
+                .value = parameter;
+
+
+            document
+                .getElementById("responsibleFactor")
+                .value = "";
+
+
+            document
+                .getElementById("reasonText")
+                .value = "";
+
+
+            document
+                .getElementById("reasonModal")
+                .classList
+                .add("active");
+
+        }
+
+
+
+        function closeReasonModal() {
+
+            document
+                .getElementById("reasonModal")
+                .classList
+                .remove("active");
+
+        }
+
+
+
+        /* =========================================
+           SAVE REASON
+        ========================================= */
+
+        function saveReason() {
+
+
+            const factor =
+                document
+                    .getElementById("responsibleFactor")
+                    .value;
+
+
+            const reason =
+                document
+                    .getElementById("reasonText")
+                    .value
+                    .trim();
+
+
+            if (!factor) {
+
+                alert(
+                    "Please select the responsible factor."
+                );
+
+                return;
+
+            }
+
+
+            if (!reason) {
+
+                alert(
+                    "Please enter the reason for the deviation."
+                );
+
+                return;
+
+            }
+
+
+            currentFactor = factor;
+
+
+            showSuggestion(
+                factor,
+                reason,
+                currentParameter
+            );
+
+
+            /*
+             * Remove one warning notification
+             * because the user has now provided
+             * the reason.
+             */
+
+            if (notificationCount > 0) {
+
+                notificationCount--;
+
+            }
+
+
+            updateNotificationCount();
+
+
+            closeReasonModal();
+
+        }
+
+
+
+        /* =========================================
+           UPDATE NOTIFICATION COUNT
+        ========================================= */
+
+        function updateNotificationCount() {
+
+
+            const countElement =
+                document.getElementById(
+                    "notificationCount"
+                );
+
+
+            const statusElement =
+                document.getElementById(
+                    "notificationStatus"
+                );
+
+
+            countElement.innerText =
+                notificationCount;
+
+
+            if (notificationCount === 0) {
+
+                countElement.style.display = "none";
+
+                statusElement.innerText =
+                    "All warnings reviewed";
+
+            }
+
+            else {
+
+                countElement.style.display = "flex";
+
+                statusElement.innerText =
+                    notificationCount +
+                    " active warnings";
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           SHOW SUGGESTION
+        ========================================= */
+
+        function showSuggestion(
+            factor,
+            reason,
+            parameter
+        ) {
+
+
+            const suggestionCard =
+                document.getElementById(
+                    "suggestionCard"
+                );
+
+
+            const suggestionText =
+                document.getElementById(
+                    "suggestionText"
+                );
+
+
+            const suggestionAction =
+                document.getElementById(
+                    "suggestionAction"
+                );
+
+
+            let message = "";
+
+            let action = "Take Action";
+
+
+            if (factor === "government") {
+
+
+                message =
+                    "The deviation has been attributed to a government department. " +
+                    "PRAGATI AI recommends notifying the concerned department " +
+                    "with the affected parameter, reason and expected impact " +
+                    "so that the issue can be reviewed and resolved.";
+
+
+                action =
+                    "Notify Department";
+
+            }
+
+
+            else if (factor === "labour") {
+
+
+                message =
+                    "The deviation has been attributed to employees or labour. " +
+                    "PRAGATI AI recommends reviewing the affected work package, " +
+                    "identifying the responsible team and issuing an appropriate " +
+                    "warning or corrective instruction.";
+
+
+                action =
+                    "Issue Warning";
+
+            }
+
+
+            else if (factor === "contractor") {
+
+
+                message =
+                    "The deviation has been attributed to the contractor. " +
+                    "PRAGATI AI recommends reviewing the contractor's current " +
+                    "execution status and requesting a corrective recovery plan.";
+
+
+                action =
+                    "Request Recovery Plan";
+
+            }
+
+
+            else if (factor === "material") {
+
+
+                message =
+                    "The deviation has been attributed to material or supply issues. " +
+                    "PRAGATI AI recommends checking procurement status, expected " +
+                    "delivery dates and available alternatives.";
+
+
+                action =
+                    "Review Supply Status";
+
+            }
+
+
+            else if (factor === "weather") {
+
+
+                message =
+                    "The deviation has been attributed to weather or an external factor. " +
+                    "PRAGATI AI recommends updating the execution schedule and " +
+                    "replanning affected activities.";
+
+
+                action =
+                    "Update Schedule";
+
+            }
+
+
+            else {
+
+
+                message =
+                    "PRAGATI AI recommends reviewing the reported cause, " +
+                    "estimating its impact and creating a corrective action plan.";
+
+
+                action =
+                    "Create Action Plan";
+
+            }
+
+
+            suggestionText.innerHTML =
+                "<strong>Reason recorded:</strong> " +
+                reason +
+                "<br><br>" +
+                message;
+
+
+            suggestionAction.innerText =
+                action;
+
+
+            suggestionCard
+                .classList
+                .add("active");
+
+
+            suggestionCard.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+
+
+        /* =========================================
+           ACTION
+        ========================================= */
+
+        function performAction() {
+
+
+            if (currentFactor === "government") {
+
+                notifyDepartment();
+
+            }
+
+
+            else if (currentFactor === "labour") {
+
+                issueWarning();
+
+            }
+
+
+            else if (currentFactor === "contractor") {
+
+                alert(
+                    "Prototype action:\n\n" +
+                    "Recovery plan request created for the contractor."
+                );
+
+            }
+
+
+            else if (currentFactor === "material") {
+
+                alert(
+                    "Prototype action:\n\n" +
+                    "Supply status review has been initiated."
+                );
+
+            }
+
+
+            else if (currentFactor === "weather") {
+
+                alert(
+                    "Prototype action:\n\n" +
+                    "Schedule update has been recommended."
+                );
+
+            }
+
+
+            else {
+
+                alert(
+                    "Prototype action:\n\n" +
+                    "Corrective action plan has been created."
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           GOVERNMENT
+        ========================================= */
+
+        function notifyDepartment() {
+
+            alert(
+                "Prototype action:\n\n" +
+                "Notification prepared for the concerned government department " +
+                "regarding the project deviation."
+            );
+
+        }
+
+
+
+        /* =========================================
+           LABOUR
+        ========================================= */
+
+        function issueWarning() {
+
+            alert(
+                "Prototype action:\n\n" +
+                "Warning / corrective instruction prepared for the responsible " +
+                "employee or labour team."
+            );
+
+        }
+
+
+
+        /* =========================================
+           GOOGLE
+        ========================================= */
+
+        function openGoogleModal() {
+
+            document
+                .getElementById("googleModal")
+                .classList
+                .add("active");
+
+        }
+
+
+
+        function closeGoogleModal() {
+
+            document
+                .getElementById("googleModal")
+                .classList
+                .remove("active");
+
+        }
+
+
+
+        /* =========================================
+           CLOSE OUTSIDE MODAL
+        ========================================= */
+
+        document
+            .getElementById("reasonModal")
+            .addEventListener(
+                "click",
+                function(event) {
+
+                    if (event.target === this) {
+
+                        closeReasonModal();
+
+                    }
+
+                }
+            );
+
+
+        document
+            .getElementById("googleModal")
+            .addEventListener(
+                "click",
+                function(event) {
+
+                    if (event.target === this) {
+
+                        closeGoogleModal();
+
+                    }
+
+                }
+            );
+
+
+        /* =========================================
+           CLOSE NOTIFICATION WHEN CLICKING OUTSIDE
+        ========================================= */
+
+        document.addEventListener(
+            "click",
+            function(event) {
+
+                const wrapper =
+                    document.querySelector(
+                        ".notification-wrapper"
+                    );
+
+
+                const panel =
+                    document.getElementById(
+                        "notificationPanel"
+                    );
+
+
+                if (
+                    wrapper &&
+                    !wrapper.contains(event.target)
+                ) {
+
+                    panel.classList.remove("active");
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

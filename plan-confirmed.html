@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Project Plan Confirmed | PRAGATI AI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* =========================================
+           PLAN CONFIRMED PAGE
+        ========================================= */
+
+        .confirmation-page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 55px 24px 80px;
+        }
+
+
+        /* =========================================
+           SUCCESS HEADER
+        ========================================= */
+
+        .success-header {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .success-icon {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            background: #e8f6ed;
+            color: #37845e;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+            font-weight: 700;
+
+            border: 1px solid #d1ead9;
+        }
+
+        .success-header h1 {
+            color: #172033;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .success-header p {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================================
+           INFORMATION CARD
+        ========================================= */
+
+        .info-card {
+            background: #ffffff;
+            border: 1px solid #e3e8ef;
+            border-radius: 18px;
+            padding: 27px;
+            margin-bottom: 22px;
+        }
+
+        .card-heading {
+            margin-bottom: 20px;
+        }
+
+        .card-heading h2 {
+            color: #172033;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .card-heading p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           PROJECT INFORMATION
+        ========================================= */
+
+        .project-name {
+            background: #f5f8ff;
+            border: 1px solid #dce7ff;
+            border-radius: 12px;
+            padding: 17px;
+            margin-bottom: 20px;
+        }
+
+        .project-name span {
+            display: block;
+            color: #64748b;
+            font-size: 11px;
+            margin-bottom: 6px;
+        }
+
+        .project-name strong {
+            color: #172033;
+            font-size: 17px;
+        }
+
+        .information-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .information-box {
+            background: #f8fafc;
+            border: 1px solid #e8edf3;
+            border-radius: 11px;
+            padding: 15px;
+        }
+
+        .information-box span {
+            display: block;
+            color: #64748b;
+            font-size: 11px;
+            margin-bottom: 7px;
+        }
+
+        .information-box strong {
+            color: #172033;
+            font-size: 14px;
+        }
+
+
+        /* =========================================
+           SELECTED PLAN
+        ========================================= */
+
+        .selected-plan {
+            border: 1px solid #cbdcff;
+            background: #f8fbff;
+            border-radius: 14px;
+            padding: 21px;
+        }
+
+        .plan-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .plan-top h3 {
+            color: #172033;
+            font-size: 19px;
+            margin-bottom: 5px;
+        }
+
+        .plan-top p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .confirmed-tag {
+            background: #e8f6ed;
+            color: #37845e;
+            border: 1px solid #d1ead9;
+            border-radius: 20px;
+            padding: 6px 10px;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .plan-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .plan-detail {
+            background: #ffffff;
+            border: 1px solid #e3e8ef;
+            border-radius: 10px;
+            padding: 13px;
+        }
+
+        .plan-detail span {
+            display: block;
+            color: #64748b;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .plan-detail strong {
+            color: #172033;
+            font-size: 14px;
+        }
+
+
+        /* =========================================
+           NEXT STEPS
+        ========================================= */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .step {
+            border: 1px solid #e3e8ef;
+            background: #ffffff;
+            border-radius: 13px;
+            padding: 19px;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: #edf3ff;
+            color: #4f7df3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 13px;
+        }
+
+        .step h3 {
+            color: #172033;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .step p {
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           ACTIONS
+        ========================================= */
+
+        .page-actions {
+            display: flex;
+            justify-content: center;
+            gap: 11px;
+            margin-top: 30px;
+        }
+
+        .primary-button,
+        .secondary-button {
+            padding: 12px 20px;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .primary-button {
+            background: #4f7df3;
+            color: white;
+            border: 1px solid #4f7df3;
+        }
+
+        .primary-button:hover {
+            background: #3f6fe5;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #475569;
+            border: 1px solid #d8dee7;
+        }
+
+        .secondary-button:hover {
+            background: #f8fafc;
+        }
+
+
+        /* =========================================
+           PROTOTYPE NOTE
+        ========================================= */
+
+        .prototype-note {
+            margin-top: 28px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           GOOGLE MODAL
+        ========================================= */
+
+        .google-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .google-overlay.active {
+            display: flex;
+        }
+
+        .google-modal {
+            width: min(420px, 100%);
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 25px 70px rgba(15, 23, 42, 0.2);
+            position: relative;
+        }
+
+        .google-modal h2 {
+            color: #172033;
+            margin-bottom: 8px;
+        }
+
+        .google-modal p {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .google-button {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d8dee7;
+            background: white;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #172033;
+        }
+
+        .close-google {
+            position: absolute;
+            right: 18px;
+            top: 14px;
+            border: none;
+            background: none;
+            color: #64748b;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            .information-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .confirmation-page {
+                padding: 35px 18px 60px;
+            }
+
+            .success-header h1 {
+                font-size: 28px;
+            }
+
+            .information-grid,
+            .plan-details {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-top {
+                flex-direction: column;
+            }
+
+            .page-actions {
+                flex-direction: column;
+            }
+
+            .page-actions a {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+
+                <div class="logo-mark">
+                    P
+                </div>
+
+                <span>
+                    PRAGATI AI
+                </span>
+
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="index.html#how-it-works">
+                    How It Works
+                </a>
+
+                <a
+                    href="#"
+                    id="googleLogin"
+                    class="google-login"
+                >
+                    Continue with Google
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main class="confirmation-page">
+
+
+        <!-- SUCCESS -->
+
+        <section class="success-header">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h1>
+                Project Plan Confirmed
+            </h1>
+
+            <p>
+                The selected execution plan has been confirmed
+                for this PRAGATI AI prototype project.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================================
+             PROJECT INFORMATION
+        ========================================= -->
+
+        <section class="info-card">
+
+            <div class="card-heading">
+
+                <h2>
+                    Project Information
+                </h2>
+
+                <p>
+                    Interpreted project details used for planning.
+                </p>
+
+            </div>
+
+
+            <div class="project-name">
+
+                <span>
+                    Project Name
+                </span>
+
+                <strong id="projectName">
+                    Integrated Urban Water Infrastructure Project
+                </strong>
+
+            </div>
+
+
+            <div class="information-grid">
+
+                <div class="information-box">
+
+                    <span>
+                        Project Value
+                    </span>
+
+                    <strong id="projectValue">
+                        ₹285 Cr
+                    </strong>
+
+                </div>
+
+
+                <div class="information-box">
+
+                    <span>
+                        Duration
+                    </span>
+
+                    <strong id="projectDuration">
+                        30 Months
+                    </strong>
+
+                </div>
+
+
+                <div class="information-box">
+
+                    <span>
+                        Execution Phases
+                    </span>
+
+                    <strong id="projectPhases">
+                        5 Major Phases
+                    </strong>
+
+                </div>
+
+
+                <div class="information-box">
+
+                    <span>
+                        Eligibility
+                    </span>
+
+                    <strong>
+                        ₹150 Cr+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             SELECTED PLAN
+        ========================================= -->
+
+        <section class="info-card">
+
+            <div class="card-heading">
+
+                <h2>
+                    Selected Execution Plan
+                </h2>
+
+                <p>
+                    The execution approach selected during project planning.
+                </p>
+
+            </div>
+
+
+            <div class="selected-plan">
+
+                <div class="plan-top">
+
+                    <div>
+
+                        <h3 id="planName">
+                            Standard Execution Plan
+                        </h3>
+
+                        <p id="planDescription">
+                            A balanced approach focused on maintaining
+                            the planned cost and schedule.
+                        </p>
+
+                    </div>
+
+
+                    <span class="confirmed-tag">
+                        CONFIRMED
+                    </span>
+
+                </div>
+
+
+                <div class="plan-details">
+
+                    <div class="plan-detail">
+
+                        <span>
+                            Estimated Cost
+                        </span>
+
+                        <strong id="planCost">
+                            ₹285 Cr
+                        </strong>
+
+                    </div>
+
+
+                    <div class="plan-detail">
+
+                        <span>
+                            Duration
+                        </span>
+
+                        <strong id="planDuration">
+                            30 Months
+                        </strong>
+
+                    </div>
+
+
+                    <div class="plan-detail">
+
+                        <span>
+                            Priority
+                        </span>
+
+                        <strong id="planPriority">
+                            Balanced
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             NEXT STEPS
+        ========================================= -->
+
+        <section class="info-card">
+
+            <div class="card-heading">
+
+                <h2>
+                    What Happens Next
+                </h2>
+
+                <p>
+                    PRAGATI AI can move from planning into project monitoring.
+                </p>
+
+            </div>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Establish Baseline
+                    </h3>
+
+                    <p>
+                        Record the approved cost, schedule and
+                        expected work progress as the project baseline.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Track Progress
+                    </h3>
+
+                    <p>
+                        Compare ongoing project work, time and
+                        expenditure against the planned baseline.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Detect Deviations
+                    </h3>
+
+                    <p>
+                        Identify meaningful deviations and ask
+                        for their cause before suggesting future actions.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             ACTION BUTTONS
+        ========================================= -->
+
+        <div class="page-actions">
+
+            <a
+                href="existing.html"
+                class="primary-button"
+            >
+                Open Project Monitoring
+            </a>
+
+            <a
+                href="index.html"
+                class="secondary-button"
+            >
+                Back to Home
+            </a>
+
+        </div>
+
+
+        <div class="prototype-note">
+
+            PRAGATI AI is currently a prototype.
+            Project information and execution data shown here
+            are sample demonstration data.
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================
+         GOOGLE LOGIN MODAL
+    ========================================= -->
+
+    <div
+        class="google-overlay"
+        id="loginOverlay"
+    >
+
+        <div class="google-modal">
+
+            <button
+                class="close-google"
+                id="closeLogin"
+            >
+                ×
+            </button>
+
+            <h2>
+                Continue with Google
+            </h2>
+
+            <p>
+                Google authentication is shown as a prototype
+                feature and is not connected to a real
+                authentication service.
+            </p>
+
+            <button
+                class="google-button"
+                id="googleContinue"
+            >
+                Continue with Google
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+
+        /* =========================================
+           SAMPLE PROJECT DATA
+        ========================================= */
+
+        const projectData = {
+
+            water: {
+
+                name:
+                    "Integrated Urban Water Infrastructure Project",
+
+                value:
+                    "₹285 Cr",
+
+                duration:
+                    "30 Months",
+
+                phases:
+                    "5 Major Phases"
+
+            },
+
+
+            highway: {
+
+                name:
+                    "Regional Highway Development Project",
+
+                value:
+                    "₹420 Cr",
+
+                duration:
+                    "36 Months",
+
+                phases:
+                    "6 Major Phases"
+
+            },
+
+
+            metro: {
+
+                name:
+                    "Urban Metro Connectivity Project",
+
+                value:
+                    "₹680 Cr",
+
+                duration:
+                    "48 Months",
+
+                phases:
+                    "8 Major Phases"
+
+            }
+
+        };
+
+
+        const planData = {
+
+            standard: {
+
+                name:
+                    "Standard Execution Plan",
+
+                description:
+                    "A balanced approach focused on maintaining the planned cost and schedule.",
+
+                priority:
+                    "Balanced"
+
+            },
+
+
+            accelerated: {
+
+                name:
+                    "Accelerated Execution Plan",
+
+                description:
+                    "A faster approach using parallel execution and additional resources to reduce project duration.",
+
+                priority:
+                    "Time"
+
+            },
+
+
+            optimized: {
+
+                name:
+                    "Cost Optimized Execution Plan",
+
+                description:
+                    "A cost-focused approach designed to control expenditure while allowing a slightly longer execution timeline.",
+
+                priority:
+                    "Cost"
+
+            }
+
+        };
+
+
+        /* =========================================
+           LOAD SAVED SELECTION
+        ========================================= */
+
+        const savedProject =
+            localStorage.getItem(
+                "pragatiSelectedProject"
+            );
+
+
+        const savedPlan =
+            localStorage.getItem(
+                "pragatiSelectedPlan"
+            );
+
+
+        /*
+         * If fresher.html has stored a selection,
+         * display it here.
+         *
+         * Otherwise, the default prototype project
+         * and standard plan are displayed.
+         */
+
+        const activeProject =
+            projectData[savedProject]
+                ? projectData[savedProject]
+                : projectData.water;
+
+
+        const activePlan =
+            planData[savedPlan]
+                ? planData[savedPlan]
+                : planData.standard;
+
+
+
+        /* =========================================
+           UPDATE PROJECT INFORMATION
+        ========================================= */
+
+        document.getElementById(
+            "projectName"
+        ).textContent =
+            activeProject.name;
+
+
+        document.getElementById(
+            "projectValue"
+        ).textContent =
+            activeProject.value;
+
+
+        document.getElementById(
+            "projectDuration"
+        ).textContent =
+            activeProject.duration;
+
+
+        document.getElementById(
+            "projectPhases"
+        ).textContent =
+            activeProject.phases;
+
+
+
+        /* =========================================
+           UPDATE PLAN INFORMATION
+        ========================================= */
+
+        document.getElementById(
+            "planName"
+        ).textContent =
+            activePlan.name;
+
+
+        document.getElementById(
+            "planDescription"
+        ).textContent =
+            activePlan.description;
+
+
+        document.getElementById(
+            "planPriority"
+        ).textContent =
+            activePlan.priority;
+
+
+        /*
+         * Plan cost and duration are calculated
+         * from the selected project.
+         */
+
+        let planCost =
+            activeProject.value;
+
+        let planDuration =
+            activeProject.duration;
+
+
+        if (savedPlan === "accelerated") {
+
+            if (savedProject === "water") {
+
+                planCost = "₹298 Cr";
+                planDuration = "25 Months";
+
+            }
+
+            else if (savedProject === "highway") {
+
+                planCost = "₹438 Cr";
+                planDuration = "31 Months";
+
+            }
+
+            else if (savedProject === "metro") {
+
+                planCost = "₹720 Cr";
+                planDuration = "41 Months";
+
+            }
+
+        }
+
+
+        if (savedPlan === "optimized") {
+
+            if (savedProject === "water") {
+
+                planCost = "₹272 Cr";
+                planDuration = "34 Months";
+
+            }
+
+            else if (savedProject === "highway") {
+
+                planCost = "₹402 Cr";
+                planDuration = "40 Months";
+
+            }
+
+            else if (savedProject === "metro") {
+
+                planCost = "₹645 Cr";
+                planDuration = "53 Months";
+
+            }
+
+        }
+
+
+        document.getElementById(
+            "planCost"
+        ).textContent =
+            planCost;
+
+
+        document.getElementById(
+            "planDuration"
+        ).textContent =
+            planDuration;
+
+
+
+        /* =========================================
+           GOOGLE LOGIN
+        ========================================= */
+
+        const googleLogin =
+            document.getElementById(
+                "googleLogin"
+            );
+
+
+        const googleContinue =
+            document.getElementById(
+                "googleContinue"
+            );
+
+
+        const loginOverlay =
+            document.getElementById(
+                "loginOverlay"
+            );
+
+
+        const closeLogin =
+            document.getElementById(
+                "closeLogin"
+            );
+
+
+        googleLogin.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                loginOverlay.classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+
+        closeLogin.addEventListener(
+            "click",
+            function() {
+
+                loginOverlay.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+        loginOverlay.addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target ===
+                    loginOverlay
+                ) {
+
+                    loginOverlay.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+
+        googleContinue.addEventListener(
+            "click",
+            function() {
+
+                alert(
+                    "Google authentication is currently available as a prototype feature."
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
